@@ -58,5 +58,3 @@
 ```sql
   \i /pathToFile.sql
 ```
-
-### Create Table [Read Here](./create-table.md)

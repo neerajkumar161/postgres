@@ -33,3 +33,4 @@ service postgresql status | start | stop | reload
 ### Creating Database
  - ```CREATE DATABASE testdatabase;```
 
+### Create Table [Read Here](./create-table.md)
