@@ -46,5 +46,51 @@
   SELECT * from  person LIMIT 10;
   SELECT * from  person FETCH FIRST 5 ROW ONLY;  /* Alternative to LIMIT */
   -- offset basically skip option in MongoDB
-  SELECT * from person OFFSET 5 LIMIT 5;  /* Will limit 5, but skip first 5,MongoDB Equivalent [ { $skip: 5 }, { $limit: 5 } ]*/
+  SELECT * from person OFFSET 5 LIMIT 5;  /* Will limit 5, but skip first 5,*/
+```
+```js
+  // MongoDB Equivalent 
+  [ { $skip: 5 }, { $limit: 5 } ]
+```
+
+### ```IN``` operator instead of OR on same column or field again and again
+```sql
+  SELECT * from person WHERE country = 'India' OR country = 'France' OR country = 'Poland';
+  -- Instead we can use IN operator to acheive same result
+  SELECT * from person WHERE country IN ('India', 'France', 'Poland');  /* 
+```
+```js
+  // MongoDB Equivalent
+  [ { $match: { country: { $in: ['India', 'France', 'Poland'] } } } ]
+```
+
+### Using ```BETWEEN``` operator
+```sql
+  SELECT * FROM person where dateofbirth BETWEEN DATE '1996-01-01' AND '1998-01-01'
+```
+```js
+  // MongoDB Equivalent
+  [ { $match: { dateofbirth: { $gte: new Date('1996-01-01'), $lte: new Date('1998-01-01') } } } ]
+```
+
+### Using ```LIKE``` and ```ILIKE``` operators to match the substring
+```sql
+  SELECT * FROM person WHERE email LIKE '%.com';
+  SELECT * FROM person WHERE email LIKE '%@google.com';  /* any chars before @google.com */
+  SELECT * FROM person WHERE email LIKE '%@google%';  /* any chars before and after @google */
+  -- _ use for single character
+  SELECT * FROM person WHERE email LIKE '_____@%.com'; /* Five chars before @%.com */
+  SELECT * FROm person WHERE country LIKE 'P%'; /* Case Sensitive */
+  -- ILIKE is case insentive
+  SELECT * FROm person WHERE country ILIKE 'p%';
+```
+
+```js
+  // MongoDB Equivalent, it uses regex heavily to match the expression
+  [ { $match: { email: { $regex: /\.com$/ } } } ]
+  [ { $match: { email: { $regex: /\@google.com$/ } } } ]
+  [ { $match: { email: { $regex: /google.com/ } } } ]
+  [ { $match: { email: { $regex: /^.{5}@.*\.com$/ } } } ]
+  [ { $match: { email: { $regex: /^P/ } } } ]
+  [ { $match: { email: { $regex: /^P/i } } } ]  /* Case Insensitive */
 ```
