@@ -34,5 +34,6 @@ service postgresql status | start | stop | reload
  - ```CREATE DATABASE testdatabase;```
 
 ### Follow each readme one by one
-  - [Create Table Queries and Commands](./create-table.md)
-  - [Select Queries and Commands](./select-queries.md)
+  1. [Create Table Queries and Commands](./create-table.md)
+  2. [Select Queries and Commands](./select-queries.md)
+  3. [Group By Commands](./group-by.md)
