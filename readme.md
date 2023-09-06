@@ -37,3 +37,4 @@ service postgresql status | start | stop | reload
   1. [Create Table Queries and Commands](./create-table.md)
   2. [Select Queries and Commands](./select-queries.md)
   3. [Group By Commands](./group-by.md)
+  3. [COALESCE() Aggregate Function](./coalesce.md)
