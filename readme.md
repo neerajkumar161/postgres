@@ -39,3 +39,4 @@ service postgresql status | start | stop | reload
   3. [Group By Commands](./group-by.md)
   4. [COALESCE() Aggregate Function](./coalesce.md)
   5. [Timestamps and Date](./timestamps-date.md)
+  6. [Primary Keys and Constraints](./primary-keys.md)
